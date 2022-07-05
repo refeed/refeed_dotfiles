@@ -31,16 +31,18 @@ volume master {
 cpu_temperature 0 {
         format = "T: %degrees °C"
         path = "/sys/class/hwmon/hwmon4/temp1_input"
+	max_threshold = "80"
+	format_above_threshold = "HOT! %degrees °C"
 }
 
 wireless _first_ {
         format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
+        format_down = "W"
 }
 
 ethernet _first_ {
         format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+        format_down = "E"
 }
 
 battery all {
@@ -50,10 +52,15 @@ battery all {
 
 disk "/" {
         format = "%avail"
+	low_threshold = "30"
+	threshold_type = "gbytes_avail"
+	format_below_threshold = "ROOT LOW! %avail"
 }
 
 load {
         format = "%1min"
+	max_threshold = "4.0"
+	format_above_threshold = "OVERLOAD %1min"
 }
 
 memory {
