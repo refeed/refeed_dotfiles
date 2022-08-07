@@ -27,6 +27,8 @@ Plug 'hrsh7th/nvim-cmp'
 " Using vsnip
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+" HTML autoclose tag
+Plug 'alvan/vim-closetag'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -53,6 +55,9 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Aesthetics - Others
 Plug 'junegunn/rainbow_parentheses.vim'
+
+" Python
+Plug 'psf/black', { 'branch': 'stable' }
 
 call plug#end()
 
@@ -104,6 +109,12 @@ autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango inoremap {{ {{  }}<left><left><left>
 autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
 autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
+
+" Python
+augroup black_on_save
+  autocmd!
+  autocmd BufWritePre *.py Black
+augroup end
 
 """ Setup integrated terminal
 " From https://betterprogramming.pub/setting-up-neovim-for-web-development-in-2020-d800de3efacd
@@ -197,7 +208,7 @@ nmap <S-Tab> :bprevious<CR>
 nnoremap gb :ls<CR>:b<Space>
 
 " For easier switching between windows
-nnoremap <C-H> <C-W>h
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
+"nnoremap <C-H> <C-W>h
+"nnoremap <C-J> <C-W>j
+"nnoremap <C-K> <C-W>k
+"nnoremap <C-L> <C-W>l
